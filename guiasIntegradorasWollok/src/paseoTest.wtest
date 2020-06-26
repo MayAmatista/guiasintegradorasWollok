@@ -1,0 +1,47 @@
+import paseoParcial.*
+describe "Familia que sale de paseo"{
+//////JUGUETES////////
+	var woody = new Juguete(edadMaximaRecomendada=8,edadMinimaRecomendada = 3)
+	var jessie =new Juguete(edadMaximaRecomendada=7,edadMinimaRecomendada = 1)
+//////PRENDAS MICA////////
+	var camperaMica = new PrendaPesada(talle = s)
+	var jeanMica = new PrendaPesada(talle = s)
+	var zapatillaDerechaMica = new PrendaParDerecha(talle = s)
+	var zapatillaIzquierdaMica = new PrendaParIzquierda(talle = s)
+	var remeraMica =  new PrendaLiviana(talle = s)
+	
+//////PRENDAS GASTON//////
+	var camperaGaston = new PrendaPesada(talle = l)
+	var jeanGaston = new PrendaPesada(talle = l)
+	var zapatillaDerechaGaston =  new PrendaParDerecha(talle = l)
+	var zapatillaIzquierdaGaston =  new PrendaParIzquierda(talle = l)
+	var remeraGaston = new PrendaLiviana(talle = l)
+////////PRENDAS OLIVIA/////
+	var camperaOlivia = new PrendaPesada(talle = s)
+	var joggingOlivia = new PrendaPesada(talle = s)
+	var mediaDerechaOlivia = new PrendaParDerecha(talle = s)
+	var mediaIzquierdaOlivia =  new PrendaParIzquierda(talle = s)
+	var camisetaOlivia =  new PrendaLiviana(talle = s)
+	
+////////PRENDAS FLOR/////////
+	var camisetaTermicaFlor = new PrendaLiviana(talle = m)
+	var jeanFlor  = new PrendaPesada(talle = m)
+	var zapatillaDerechaFlor = new PrendaParDerecha(talle = m)
+	var zapatillaIzquierdaFlor = new PrendaParIzquierda(talle = m)
+/////////NINIXS//////////
+	var mica = new NinixProblematicx(talle = s, edad = 7, juguete = woody)
+	var gaston = new Ninix(talle = l, edad = 11)
+	var olivia = new Ninix(talle = s, edad = 1)
+	var flor = new NinixProblematicx(talle = m, edad = 5, juguete = jessie)
+/////////FAMILIAS///////
+	var mosqueira = new Familia(ninixs= #{mica, gaston})
+	var otarola = new Familia (ninixs =#{olivia,flor})	
+
+////////////PRIMERA ETAPA////////////////
+test "El nivel de comodidad de la campera de Mica para Mica es 8, porque coincide en talle y no tiene desgaste " {
+
+	assert.equals(camperaMica.comodidad(mica),8)
+
+}
+	
+}
