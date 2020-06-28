@@ -1,0 +1,58 @@
+import plagas.*
+/*Requerimientos:
+Saber el nivel de daño que produce una plaga
+Saber si una plaga transmite o no enfermedades */
+describe "plagas"{
+	
+	////////ELEMENTOS/////////////
+	var laCasaDeMay = new Hogar(nivelDeMugre = 2, nivelDeConfort = 9)
+	var huerta = new Huerta (nivelDeProduccion = 50, valorDesconocido = 90)
+	var theo = new Mascota(nivelDeSalud = 45)
+	
+	/////////PLAGAS//////////
+	var plagaDeMosquitos = new PlagaDeMosquitos(poblacion =35, estaInfectada = true)
+	var plagaDePulgas = new PlagaDePulgas(poblacion = 50)
+	
+	test "la casa de May es buena porque su nivel de confort supera el nivel de mugre" {
+	assert.that(laCasaDeMay.esBueno())
+}
+	test " la huerta no es buena porque su nivel de produccion es menor al valor desconocido"{
+		assert.notThat(huerta.esBueno())
+	}
+	test "theo es bueno <3 porque esta saludable"{
+		assert.that(theo.esBueno())
+	}
+	
+	//////////////TEST PLAGAS/////////////
+	test "la plaga de mosquitos transmite enferdedad porque esta infectada"{
+		assert.that(plagaDeMosquitos.transmiteEnfermedad())
+	}
+	test "la plaga de mosquitos causa 35 de daño porque su poblacion es de 35"{
+		assert.equals(plagaDeMosquitos.danio(),35)
+	}
+	test "la plaga de pulgas transmite siempre enfermedad"{
+		assert.that(plagaDePulgas.transmiteEnfermedad())
+	}
+	test "la plaga de pulgas causa 100 de daño porque su poblacion es de 50"{
+		assert.equals(plagaDePulgas.danio(),100)
+	}
+	
+	///////////APLICAR DANIO/////////////
+		test "la huerta recibe 45 de danio por los mosquitos infectados su nivel de produccion
+			  queda en 5"{
+			  	huerta.esAtacado(plagaDeMosquitos)
+			  	assert.equals(huerta.nivelDeProduccion(), 5)
+		}
+		test" theo es atacado por los mosquitos, su nivel de salud queda en 10 y ya no es bueno"{
+			theo.esAtacado(plagaDeMosquitos)
+			assert.equals(theo.nivelDeSalud(),10)
+			assert.notThat(theo.esBueno())
+		}
+		test "las pulgas atacan la casa de May su población aumenta a 55, el nivel de mugre de la
+				casa de May aumenta a 102 "{
+			plagaDePulgas.atacar(laCasaDeMay)
+			assert.equals(plagaDePulgas.poblacion(),55)
+			assert.equals(laCasaDeMay.nivelDeMugre(),102)
+		}
+		
+}

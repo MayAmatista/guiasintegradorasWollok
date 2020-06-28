@@ -8,7 +8,7 @@ class Prenda{
 	
 	method comodidad(ninix){
 		const talleNinix = ninix.talle()
-		return self.comodidadMismoTalle(talleNinix) - self.nivelDeDesgaste().max(3)
+		return self.comodidadMismoTalle(talleNinix) - self.nivelDeDesgaste().min(3)
 	}
 	method comodidadMismoTalle(talleNinix){
 		return if(self.talle() == talleNinix){8}
@@ -22,8 +22,8 @@ class Prenda{
 	}
 }
 class PrendaDeAPares inherits Prenda{
-	const  derecho = new PrendaParDerecha()
-	const  izquierdo = new PrendaParIzquierda()
+	const  derecho
+	const  izquierdo
 	
 	override method desgaste(){
 		return (derecho + izquierdo) / 2
